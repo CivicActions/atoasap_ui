@@ -25,7 +25,11 @@ const Header = () => {
 
       <div className="header-right">
         <Link to={MAIN_ROUTES.HELP}>Help</Link>
-        {username && <Button onClick={logoutUser}>{username}</Button>}
+        {username && (
+          <Button type={"button"} onClick={logoutUser}>
+            {username}
+          </Button>
+        )}
       </div>
     </header>
   );
