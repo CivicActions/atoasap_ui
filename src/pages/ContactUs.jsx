@@ -3,12 +3,12 @@ const ContactUs = () => {
     <>
       <h1>Contact Us</h1>
       <p>
-        Complete this form or email us directly at{" "}
-        <a href="mailto:rapidato@cms.hhs.gov">rapidato@cms.hhs.gov</a>
+        {/*Complete this form or email us directly at{" "}*/}
+        {/*<a href="mailto:rapidato@cms.hhs.gov">rapidato@cms.hhs.gov</a>*/}
       </p>
       {/* @TODO: need to change the form action to submit to yet to be determined endpoint for storage in the DB and email */}
       <form
-        action="mailto:rapidato@cms.hhs.gov"
+        // action="mailto:rapidato@cms.hhs.gov"
         method="post"
         encType="text/plain"
         className="usa-form usa-form--large"

@@ -10,6 +10,6 @@ test("renders home page", async () => {
   );
 
   await waitFor(() => {
-    screen.getByText("Welcome to Blueprint for CMS");
+    screen.getByText("Welcome to Rapid ATO");
   });
 });
