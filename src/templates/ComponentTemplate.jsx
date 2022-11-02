@@ -16,8 +16,10 @@ export function ComponentTemplate({
   handleSelectControl,
   handleProjectUpdate,
 }) {
+  console.log(catalogData);
+  console.log(catalogVersion);
   const { title, description } = componentData;
-  const source = componentData.standards[catalogVersion].source;
+  const standards = componentData.standards;
   const componentControls = componentData.standards[catalogVersion].controls;
 
   const selectedControlCatalogData = {
@@ -65,10 +67,18 @@ export function ComponentTemplate({
       <div className="grid-row">
         <div className="tablet:grid-col padding-top-1">
           <p>
-            <b>Standard:</b> {CATALOG_DISPLAY_NAMES[catalogVersion]}
-          </p>
-          <p>
-            <b>Source link:</b> <a href={source}>Source</a>
+            <b>
+              {Object.keys(standards).length > 1 ? "Standards" : "Standard"}:{" "}
+            </b>
+            {Object.keys(standards).map((key, index) => (
+              <a
+                className={"margin-x-1"}
+                href={standards[key]["source"]}
+                key={index}
+              >
+                {CATALOG_DISPLAY_NAMES[key]}
+              </a>
+            ))}
           </p>
         </div>
         <div className="tablet:grid-col">
@@ -85,9 +95,9 @@ export function ComponentTemplate({
   function renderControlsList() {
     return (
       <ul className="usa-sidenav">
-        {Object.entries(componentControls).map(([key]) => (
-          <li className="usa-sidenav__item" key={key}>
-            <a href="#controls" onClick={() => handleSelectControl(key)}>
+        {Object.entries(componentControls).map(([key, index]) => (
+          <li className="usa-sidenav__item" key={index}>
+            <a href={"#" + key} onClick={() => handleSelectControl(key)}>
               {key}
             </a>
           </li>
@@ -99,24 +109,24 @@ export function ComponentTemplate({
   function renderControlLevelSection(level) {
     const accordionItemsProps = [
       {
-        title: "CMS Implementation Standards",
+        title: "Component Narrative",
+        content: <p>{getNarrativeText()}</p>,
+        expanded: true,
+        id: "inherited_narratives",
+        headingLevel: "h3",
+      },
+      {
+        title: "Implementation Standards",
         content: <p>{getImplementationText(level)}</p>,
         expanded: false,
         id: "implementation_standards",
         headingLevel: "h3",
       },
       {
-        title: "CMS Control Guidance",
+        title: "Discussion",
         content: <p>{getControlGuidanceText(level)}</p>,
         expanded: false,
         id: "control_guidance",
-        headingLevel: "h3",
-      },
-      {
-        title: "Narrative",
-        content: <p>{getNarrativeText()}</p>,
-        expanded: true,
-        id: "inherited_narratives",
         headingLevel: "h3",
       },
     ];
@@ -193,7 +203,9 @@ export function ComponentTemplate({
             <nav aria-label="Secondary navigation">{renderControlsList()}</nav>
           </div>
           <div className="grid-col-fill padding-4 margin-x-2">
-            {selectedControl ? renderControlInfo() : renderDefaultText()}
+            {selectedControl
+              ? renderControlLevelSection("high")
+              : renderDefaultText()}
             <p>
               <Link to="/components">Back to Component Library</Link>
             </p>

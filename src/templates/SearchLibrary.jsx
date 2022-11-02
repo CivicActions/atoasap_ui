@@ -41,7 +41,6 @@ const EmptyResults = ({ length }) => {
 
 const FilterCol = ({
   typeList,
-  catalogList,
   currentType,
   currentCatalog,
   checkBoxHandler,
@@ -77,15 +76,15 @@ const FilterCol = ({
         </fieldset>
         <fieldset className="usa-fieldset catalog-filter xxx">
           <legend className="usa-legend">Catalog</legend>
-          {catalogList.map((catalog, i) => (
+          {Object.entries(CATALOG_DISPLAY_NAMES).map(([key, value]) => (
             <Checkbox
-              id={catalog + "-filter"}
-              name={catalog + "-filter"}
-              label={CATALOG_DISPLAY_NAMES[catalog]}
-              value={"catalog_version=" + catalog}
+              id={key + "-filter"}
+              name={value + "-filter"}
+              label={value}
+              value={"catalog_version=" + key}
               onChange={checkBoxHandler}
-              key={i}
-              checked={isCheckedCatalog(catalog)}
+              key={key}
+              checked={isCheckedCatalog(key)}
             />
           ))}
         </fieldset>
@@ -99,7 +98,6 @@ const SearchLibrary = ({
   componentList = [],
   linkToComponentLibrary = false,
   typeList = [],
-  catalogList = [],
   totalItemCount = 0,
 }) => {
   const baseUrl = useLocation();
@@ -244,7 +242,6 @@ const SearchLibrary = ({
           typeList={typeList}
           currentType={currentType}
           currentCatalog={currentCatalog}
-          catalogList={catalogList}
           checkBoxHandler={checkBoxHandler}
         />
         <div className="grid-col-9">

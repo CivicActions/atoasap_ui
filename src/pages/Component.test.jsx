@@ -13,7 +13,7 @@ const pageData = {
   description: "Django",
   type: "software",
   catalog_data: {
-    CMS_ARS_3_1: {
+    NIST_SP80053r5: {
       high: {
         controls: {},
       },
@@ -29,9 +29,9 @@ const pageData = {
     title: "Django",
     description: "Django",
     standards: {
-      CMS_ARS_3_1: {
+      NIST_SP80053r5: {
         source:
-          "https://raw.githubusercontent.com/CMSgov/ars-machine-readable/main/3.1/oscal/json/CMS_ARS_3_1_catalog.json",
+          "https://raw.githubusercontent.com/CMSgov/ars-machine-readable/main/3.1/oscal/json/NIST_SP80053r5_catalog.json",
         controls: {},
       },
     },

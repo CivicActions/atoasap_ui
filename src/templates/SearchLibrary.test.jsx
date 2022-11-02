@@ -136,7 +136,7 @@ test("renders page with type & catalog filters", () => {
   const labelService = screen.getByLabelText("service");
   expect(labelSoftware).toBeInTheDocument();
   expect(labelService).toBeInTheDocument();
-  const labelCatalog = screen.getByLabelText("CMS ARS 3.1");
+  const labelCatalog = screen.getByLabelText("NIST SP 800-53 rev5");
   expect(labelCatalog).toBeInTheDocument();
 });
 
@@ -155,14 +155,6 @@ test("renders page with just catalog filters", () => {
   const labelService = screen.queryByLabelText("service");
   expect(labelSoftware).toBeNull();
   expect(labelService).toBeNull();
-  const labelCatalog = screen.getByLabelText("CMS ARS 3.1");
+  const labelCatalog = screen.getByLabelText("NIST SP 800-53 rev5");
   expect(labelCatalog).toBeInTheDocument();
-});
-
-test("renders page with out catalog filters", () => {
-  render(<SearchLibrary componentList={componentList} totalItemCount={5} />, {
-    wrapper: MemoryRouter,
-  });
-  const labelCatalog = screen.queryByLabelText("CMS ARS 3.1");
-  expect(labelCatalog).toBeNull();
 });
