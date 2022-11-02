@@ -16,8 +16,6 @@ export function ComponentTemplate({
   handleSelectControl,
   handleProjectUpdate,
 }) {
-  console.log(catalogData);
-  console.log(catalogVersion);
   const { title, description } = componentData;
   const standards = componentData.standards;
   const componentControls = componentData.standards[catalogVersion].controls;

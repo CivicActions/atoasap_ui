@@ -344,12 +344,16 @@ export default function ControlTemplate({
       )}
       <hr />
       <div className="bottom-section">
-        <Checkbox
-          id="is-complete-checkbox"
-          name={"is-complete"}
-          label="Mark as complete"
-          defaultChecked={status === "complete"}
-        />
+        {!notApplicable ? (
+          <Checkbox
+            id="is-complete-checkbox"
+            name={"is-complete"}
+            label="Mark as complete"
+            defaultChecked={status === "complete"}
+          />
+        ) : (
+          <div></div>
+        )}
         <button className="usa-button" onClick={(e) => onClickNext(e)}>
           Save & next
         </button>
@@ -405,7 +409,12 @@ ControlTemplate.propTypes = {
     guidance: PropTypes.string,
     implementation: PropTypes.string,
     next_id: PropTypes.string,
-    status: PropTypes.oneOf(["not_started", "incomplete", "complete"]),
+    status: PropTypes.oneOf([
+      "not_started",
+      "incomplete",
+      "complete",
+      "not_applicable",
+    ]),
     title: PropTypes.string,
     version: PropTypes.string,
   }).isRequired,
