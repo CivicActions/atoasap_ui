@@ -46,7 +46,8 @@ const EmptyResults = ({ length }) => {
 
 const FilterCol = ({ currentStatus, checkBoxHandler }) => {
   const isCheckedStatus = (value) => {
-    if (currentStatus.includes(value)) {
+    let status = currentStatus.split(",");
+    if (status.includes(value)) {
       return true;
     }
     return false;
@@ -62,7 +63,7 @@ const FilterCol = ({ currentStatus, checkBoxHandler }) => {
             label="Complete"
             value="complete"
             onChange={checkBoxHandler}
-            key="3"
+            key="1"
             checked={isCheckedStatus("complete")}
           />
           <Checkbox
@@ -80,7 +81,7 @@ const FilterCol = ({ currentStatus, checkBoxHandler }) => {
             label="Not Started"
             value="not_started"
             onChange={checkBoxHandler}
-            key="1"
+            key="3"
             checked={isCheckedStatus("not_started")}
           />
           <Checkbox
