@@ -3,6 +3,7 @@ import { MemoryRouter } from "react-router-dom";
 import ProjectSetup from "./ProjectSetup";
 import { config } from "../config";
 import RequestService from "../services/RequestService";
+import userEvent from "@testing-library/user-event";
 
 test("renders page", () => {
   render(<ProjectSetup />, { wrapper: MemoryRouter });
@@ -21,24 +22,26 @@ test("renders page", () => {
   );
   expect(question3).toBeInTheDocument();
 
-  const label1 = screen.getByText("Full name");
-  expect(label1).toBeInTheDocument();
-  const label2 = screen.getByText("Acronym");
-  expect(label2).toBeInTheDocument();
-  const label3 = screen.getByText("CMS AWS Commercial East-West");
-  expect(label3).toBeInTheDocument();
-  const label4 = screen.getByText("CMS AWS GovCloud");
-  expect(label4).toBeInTheDocument();
-  const label5 = screen.getByText("Microsoft Azure");
-  expect(label5).toBeInTheDocument();
-  const label6 = screen.getByText("Other");
-  expect(label6).toBeInTheDocument();
-  const label7 = screen.getByText("Low");
-  expect(label7).toBeInTheDocument();
-  const label8 = screen.getByText("Moderate");
-  expect(label8).toBeInTheDocument();
-  const label9 = screen.getByText("High");
-  expect(label9).toBeInTheDocument();
+  const nameLabel = screen.getByText("Full name");
+  expect(nameLabel).toBeInTheDocument();
+  const acronymLabel = screen.getByText("Acronym");
+  expect(acronymLabel).toBeInTheDocument();
+  const catalogLabel = screen.getByText("Control Catalog");
+  expect(catalogLabel).toBeInTheDocument();
+  const awsLabel = screen.getByText("AWS Commercial East-West");
+  expect(awsLabel).toBeInTheDocument();
+  const govcloudLabel = screen.getByText("AWS GovCloud");
+  expect(govcloudLabel).toBeInTheDocument();
+  const azureLabel = screen.getByText("Microsoft Azure");
+  expect(azureLabel).toBeInTheDocument();
+  const otherLabel = screen.getByText("Other");
+  expect(otherLabel).toBeInTheDocument();
+  const lowLabel = screen.getByText("Low");
+  expect(lowLabel).toBeInTheDocument();
+  const moderateLabel = screen.getByText("Moderate");
+  expect(moderateLabel).toBeInTheDocument();
+  const highLabel = screen.getByText("High");
+  expect(highLabel).toBeInTheDocument();
 });
 
 describe("Form functionality", () => {
@@ -54,12 +57,12 @@ describe("Form functionality", () => {
     fireEvent.change(screen.getByLabelText("Acronym"), {
       target: { value: "Acronym" },
     });
-    fireEvent.click(screen.getByLabelText("CMS AWS Commercial East-West"));
+    fireEvent.click(screen.getByLabelText("AWS Commercial East-West"));
     fireEvent.click(screen.getByText("Low"));
     fireEvent.click(screen.getByRole("button", { name: "Next" }));
 
     const expectedRequestUrl = `${config.backendUrl}/projects/`;
-    const expectedRequestBody = `{"catalog_version":"CMS_ARS_3_1","acronym":"Acronym","title":"Full Name","location":"cms_aws","impact_level":"low"}`;
+    const expectedRequestBody = `{"catalog_version":"NIST_SP80053r5","acronym":"Acronym","title":"Full Name","location":"aws","impact_level":"low"}`;
 
     expect(RequestService.post).toHaveBeenCalledWith(
       expectedRequestUrl,

@@ -21,7 +21,7 @@ const projectData = {
     description: "This is the coolest control.",
     implementation: "We used the thing.",
     guidance: "Do the thing right.",
-    version: "CMS_ARS_3_1_catalog",
+    version: "NIST_SP80053r5_catalog",
     next_id: "zz-99",
   },
   component_data: {
@@ -63,7 +63,7 @@ const projectDataNextControl = {
     description: "",
     implementation: "",
     guidance: "Do the thing right.",
-    version: "CMS_ARS_3_1_catalog",
+    version: "NIST_SP80053r5_catalog",
     next_id: "",
   },
   component_data: {
@@ -172,7 +172,7 @@ test("displays page data as expected", async () => {
       description: "This is the coolest control",
       implementation: "the thing is done",
       guidance: "Do the thing right.",
-      version: "CMS_ARS_3_1_catalog",
+      version: "NIST_SP80053r5_catalog",
       next_id: "zz-99",
     },
     component_data: {

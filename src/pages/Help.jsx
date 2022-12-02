@@ -5,7 +5,7 @@ const Help = () => {
       <p>
         Browse the FAQs for for quick answers or visit the website for in-depth
         information. Contact us directly if you have a comment or don't find
-        what you're looking. Thank you for using Blueprint!
+        what you're looking. Thank you for using Rapid ATO!
       </p>
       <ul className="usa-card-group">
         <li className="usa-card flex-4">
@@ -26,13 +26,13 @@ const Help = () => {
         <li className="usa-card flex-4">
           <div className="usa-card__container">
             <div className="usa-card__header">
-              <h3>About CMS Rapid ATO</h3>
+              <h3>About Rapid ATO</h3>
             </div>
             <div className="usa-card__body">
               <span>Read more about the initiative</span>
             </div>
             <div className="usa-card__footer">
-              <a href="https://ato.cms.gov/">
+              <a href="https://github.com/CivicActions/atoasap_api">
                 <button className="usa-button">Learn more</button>
               </a>
             </div>

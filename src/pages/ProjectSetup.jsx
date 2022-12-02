@@ -1,14 +1,22 @@
-import { Button, Form, Label, Radio, TextInput } from "@trussworks/react-uswds";
+import {
+  Button,
+  Form,
+  Label,
+  Radio,
+  TextInput,
+  Dropdown,
+} from "@trussworks/react-uswds";
 import { useState, useRef } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { MAIN_ROUTES } from "../AppRoutes";
 import { config } from "../config";
 import RequestService from "../services/RequestService";
+import { CATALOG_DISPLAY_NAMES } from "../constants";
 
 const ProjectSetup = () => {
   const [fullNameValidationStatus, setFullNameValidationStatus] = useState("");
   const [errorName, setErrorName] = useState(false);
-  const [acronymValidationStatus, setaAcronymValidationStatus] = useState("");
+  const [acronymValidationStatus, setAcronymValidationStatus] = useState("");
   const [errorAcronym, setErrorAcronym] = useState(false);
   const [errorLocation, setErrorLocation] = useState(false);
   const [errorFisma, setErrorFisma] = useState(false);
@@ -17,7 +25,8 @@ const ProjectSetup = () => {
   // setup input references
   const textInputFull = useRef(null);
   const textInputAcronym = useRef(null);
-  const radioInputLocationCmsAws = useRef(null);
+  const selectInputCatalog = useRef("NIST_SP80053r5");
+  const radioInputLocationAws = useRef(null);
   const radioInputLocationGovcloud = useRef(null);
   const radioInputLocationAzure = useRef(null);
   const radioInputLocationOther = useRef(null);
@@ -38,14 +47,15 @@ const ProjectSetup = () => {
   const formSubmit = () => {
     // Validate and set form post values
     let postVariables = {};
-    postVariables["catalog_version"] = "CMS_ARS_3_1";
+
+    postVariables["catalog_version"] = selectInputCatalog.current.value;
 
     if (textInputAcronym.current.value) {
       postVariables["acronym"] = textInputAcronym.current.value;
-      setaAcronymValidationStatus("success");
+      setAcronymValidationStatus("success");
       setErrorAcronym(false);
     } else {
-      setaAcronymValidationStatus("error");
+      setAcronymValidationStatus("error");
       setErrorAcronym(true);
     }
 
@@ -58,8 +68,8 @@ const ProjectSetup = () => {
       setErrorName(true);
     }
 
-    if (radioInputLocationCmsAws.current.checked) {
-      postVariables["location"] = radioInputLocationCmsAws.current.value;
+    if (radioInputLocationAws.current.checked) {
+      postVariables["location"] = radioInputLocationAws.current.value;
       setErrorLocation(false);
     } else if (radioInputLocationGovcloud.current.checked) {
       postVariables["location"] = radioInputLocationGovcloud.current.value;
@@ -147,8 +157,23 @@ const ProjectSetup = () => {
           validationStatus={acronymValidationStatus}
           inputRef={textInputAcronym}
         ></TextInput>
+
+        <Label htmlFor="input-catalog">Control Catalog</Label>
+        <Dropdown
+          id={"input-catalog"}
+          name={"input-catalog"}
+          defaultValue={selectInputCatalog}
+          inputRef={selectInputCatalog}
+        >
+          {Object.entries(CATALOG_DISPLAY_NAMES).map(([key, value]) => (
+            <option value={key} key={key}>
+              {value}
+            </option>
+          ))}
+        </Dropdown>
         <br />
         <br />
+
         <span className="bold-text">
           Where is this system going to be located?
         </span>
@@ -163,18 +188,18 @@ const ProjectSetup = () => {
         )}
         <Radio
           tile
-          id="radio-location-cms-aws-east-west"
+          id="radio-location-aws-east-west"
           name="radio-location"
-          value="cms_aws"
-          label="CMS AWS Commercial East-West"
-          inputRef={radioInputLocationCmsAws}
+          value="aws"
+          label="AWS Commercial East-West"
+          inputRef={radioInputLocationAws}
         ></Radio>
         <Radio
           tile
-          id="radio-location-cms-aws-govcloud"
+          id="radio-location-aws-govcloud"
           name="radio-location"
           value="govcloud"
-          label="CMS AWS GovCloud"
+          label="AWS GovCloud"
           inputRef={radioInputLocationGovcloud}
         ></Radio>
         <Radio
@@ -194,6 +219,7 @@ const ProjectSetup = () => {
           inputRef={radioInputLocationOther}
         ></Radio>
         <br />
+
         <span className="bold-text">
           What is the FISMA impact level of this system?
         </span>
@@ -212,7 +238,7 @@ const ProjectSetup = () => {
           name="radio-fisma"
           value="low"
           label="Low"
-          labelDescription="Data loss less likely to have a serious negative impact CMS's operations and assets."
+          labelDescription="Data loss less likely to have a serious negative impact operations and assets."
           inputRef={radioInputLevelLow}
         ></Radio>
         <Radio
@@ -221,7 +247,7 @@ const ProjectSetup = () => {
           name="radio-fisma"
           value="moderate"
           label="Moderate"
-          labelDescription="Data loss could have a serious negative impact CMS's operations and assets."
+          labelDescription="Data loss could have a serious negative impact operations and assets."
           inputRef={radioInputLevelModerate}
         ></Radio>
         <Radio
@@ -230,7 +256,7 @@ const ProjectSetup = () => {
           name="radio-fisma"
           value="high"
           label="High"
-          labelDescription="Data loss could have a catastrophic impact CMS's operations and assets."
+          labelDescription="Data loss could have a catastrophic impact operations and assets."
           inputRef={radioInputLevelHigh}
         ></Radio>
       </Form>

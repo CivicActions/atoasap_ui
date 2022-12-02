@@ -109,7 +109,7 @@ test("renders the pageTemplate when page data is successfully returned", async (
   );
   await waitFor(() => {
     // ensures component has finished running async code and has rendered data
-    screen.getByText("Component Library");
+    screen.getAllByText("Component Library");
   });
 });
 

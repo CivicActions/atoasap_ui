@@ -2,14 +2,14 @@ const Faq = () => {
   return (
     <>
       <h1>Frequently Asked Questions</h1>
-      <h3>How does Blueprint help you get an ATO?</h3>
+      <h3>How does Rapid ATO help you get an ATO?</h3>
       <p>
         Completing the System Security Plan (SSP) accounts for about 80 percent
         of the work needed to get an ATO, and writing security control
         implementation statements is one of the biggest challenges.
       </p>
       <p>
-        Blueprint simplifies the process by providing reusable compliance
+        Rapid ATO simplifies the process by providing reusable compliance
         components that match your system and include draft control
         implementation statements that satisfy requirements.
       </p>
@@ -17,7 +17,7 @@ const Faq = () => {
         Components enhance the creation, maintenance and understanding of System
         Security SSPs. They'll also support gap analysis, automated verification
         and ongoing assessments and authorization. By providing pre-written
-        control implementation statements in components, Blueprint helps you
+        control implementation statements in components, Rapid ATO helps you
         create your SSP faster.
       </p>
 
@@ -27,7 +27,7 @@ const Faq = () => {
         developing your system!
       </p>
       <p>
-        Blueprint's goal is to make compliance more iterative. As you build your
+        Rapid ATO's goal is to make compliance more iterative. As you build your
         system, add components based on the policies and technologies you're
         using.
       </p>
@@ -49,16 +49,16 @@ const Faq = () => {
       </p>
       <h3>Are all controls created equal?</h3>
       <p>
-        No, but the good news is that Blueprint clearly identifies which
+        No, but the good news is that Rapid ATO clearly identifies which
         controls statements are:
       </p>
       <ul className="usa-list">
         <li>
-          <span className="text-bold">Fully inherited</span> (Other CMS systems
+          <span className="text-bold">Fully inherited</span> (Other components
           provide the full statement)
         </li>
         <li>
-          <span className="text-bold">Shared</span> (Other CMS systems and your
+          <span className="text-bold">Shared</span> (Other components and your
           system each contribute to the statement)
         </li>
         <li>
@@ -73,7 +73,7 @@ const Faq = () => {
         compliance requirements.
       </p>
       <p>
-        By allowing the CMS hosting environment to take on certain
+        For example, by allowing AWS hosting environment to take on certain
         responsibilities, you fully inherit some control narratives. This means
         you don't have to write them. There are also shared controls, where the
         host is responsible for part of the narrative and the product team
@@ -91,7 +91,7 @@ const Faq = () => {
         for your system, components do some of the work for you.
       </p>
       <p>
-        Blueprint automatically adds some components to your system based on the
+        Rapid ATO automatically adds some components to your system based on the
         information you provide.
       </p>
       <p>
@@ -100,15 +100,15 @@ const Faq = () => {
       </p>
       <h3>Will components cover your entire SSP?</h3>
       <p>
-        The CMS security and compliance community is working to build components
-        for every control. But, there are controls that aren't included in a
+        The security and compliance community is working to build components for
+        every control. But, there are controls that aren't included in a
         component yet.
       </p>
       <p>
         For these controls, your team is responsible for creating accurate,
         complete control implementation statements.
       </p>
-      <h3>How do I know which components to add in Blueprint?</h3>
+      <h3>How do I know which components to add in Rapid ATO?</h3>
       <p>
         The components you select should align with your system's technologies
         and policies.
@@ -116,7 +116,7 @@ const Faq = () => {
       <p>
         For example, if your system is using Splunk to track audit logs and
         Confluence to manage information, you can select the Splunk and
-        Confluence components and Blueprint will suggest control implementation
+        Confluence components and Rapid ATO will suggest control implementation
         narratives for your system.
       </p>
       <p>

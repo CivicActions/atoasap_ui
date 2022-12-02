@@ -28,7 +28,7 @@ const componentData = {
     inherited: {
       AWS: {
         description:
-          "CMS Cloud provides a check in the Inspec profile to ensure that systems are configured to display the approved CMS system notification.",
+          "The system partially inherits this control from the FedRAMP Provisional ATO granted to the AWS Cloud dated 1 May 2013 for the following: incident response training.",
       },
     },
     private: {
@@ -84,11 +84,9 @@ test("renders each section on the page", () => {
   const privateNarrativeAccordion = accordionSections[1];
 
   const implementationAccordion = within(topAccordionItems).getByText(
-    "CMS Implementation Standards"
+    "Implementation Standards"
   );
-  const guidanceAccordion = within(topAccordionItems).getByText(
-    "CMS Control Guidance"
-  );
+  const guidanceAccordion = within(topAccordionItems).getByText("Discussion");
   const inheritedNarrativesAccordion = within(topAccordionItems).getByText(
     "Inherited Narratives"
   );
@@ -106,4 +104,24 @@ test("renders each section on the page", () => {
   expect(screen.getByTestId("project_header_subtitle")).toHaveTextContent(
     expectedSubtitle
   );
+});
+
+test("clicking not applicable shows remarks", () => {
+  render(
+    <MemoryRouter>
+      <ControlTemplate
+        project={projectData}
+        control={controlData}
+        component={componentData}
+      />
+    </MemoryRouter>
+  );
+
+  const accordionSections = screen.getAllByTestId("accordion");
+  fireEvent.click(screen.getByTestId("on-off-toggle"));
+  const topAccordionItems = accordionSections[0];
+  const natApplicableAccordion = within(topAccordionItems).getByText(
+    "Non-applicable control justification"
+  );
+  expect(natApplicableAccordion).toBeInTheDocument();
 });

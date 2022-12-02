@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
-import { DEFAULT_CATALOG_VERSION } from "../constants";
+import { CATALOG_DISPLAY_NAMES, DEFAULT_CATALOG_VERSION } from "../constants";
 import { config } from "../config";
 import RequestService from "../services/RequestService";
 
@@ -66,12 +66,6 @@ const ComponentLibrary = () => {
     }
   }, [getSearch]);
 
-  let totalItemCount = 0;
-  let lastItem = componentList[componentList.length - 1];
-  if (lastItem !== undefined && lastItem.total_item_count !== undefined) {
-    totalItemCount = lastItem.total_item_count;
-  }
-
   if (hasError) {
     return <ErrorMessage message={ERROR_MESSAGE} />;
   }
@@ -79,10 +73,9 @@ const ComponentLibrary = () => {
     <>
       <h1>Component Library</h1>
       <SearchLibrary
-        componentList={componentList}
+        componentList={componentList.results}
         typeList={typeList}
-        catalogList={[DEFAULT_CATALOG_VERSION]}
-        totalItemCount={totalItemCount}
+        totalItemCount={componentList.count}
       />
     </>
   );
